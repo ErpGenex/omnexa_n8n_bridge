@@ -1,0 +1,53 @@
+{
+	"actions": [],
+	"creation": "2026-04-29 18:20:00.000000",
+	"doctype": "DocType",
+	"editable_grid": 1,
+	"engine": "InnoDB",
+	"field_order": [
+		"enabled",
+		"connection_mode",
+		"base_url",
+		"auth_type",
+		"api_key_header",
+		"api_key",
+		"basic_username",
+		"basic_password",
+		"bearer_token",
+		"webhook_secret",
+		"timeout_seconds",
+		"max_retries",
+		"log_payloads"
+	],
+	"fields": [
+		{"fieldname": "enabled", "fieldtype": "Check", "label": "Enabled", "default": "1"},
+		{"fieldname": "connection_mode", "fieldtype": "Select", "label": "Connection Mode", "options": "Cloud\nLocal", "default": "Cloud", "reqd": 1},
+		{"fieldname": "base_url", "fieldtype": "Data", "label": "N8N Base URL", "reqd": 1},
+		{"fieldname": "auth_type", "fieldtype": "Select", "label": "Authentication Type", "options": "Bearer Token\nAPI Key\nBasic Auth", "default": "Bearer Token", "reqd": 1},
+		{"fieldname": "api_key_header", "fieldtype": "Data", "label": "API Key Header", "default": "X-API-KEY"},
+		{"fieldname": "api_key", "fieldtype": "Password", "label": "API Key"},
+		{"fieldname": "basic_username", "fieldtype": "Data", "label": "Basic Auth Username"},
+		{"fieldname": "basic_password", "fieldtype": "Password", "label": "Basic Auth Password"},
+		{"fieldname": "bearer_token", "fieldtype": "Password", "label": "Bearer Token"},
+		{"fieldname": "webhook_secret", "fieldtype": "Password", "label": "Webhook Secret"},
+		{"fieldname": "timeout_seconds", "fieldtype": "Int", "label": "Timeout (seconds)", "default": "30"},
+		{"fieldname": "max_retries", "fieldtype": "Int", "label": "Max Retries", "default": "2"},
+		{"fieldname": "log_payloads", "fieldtype": "Check", "label": "Log Request/Response Payloads", "default": "0"}
+	],
+	"grid_page_length": 50,
+	"index_web_pages_for_search": 1,
+	"issingle": 1,
+	"links": [],
+	"modified": "2026-04-29 18:20:00.000000",
+	"modified_by": "Administrator",
+	"module": "Omnexa N8N Bridge",
+	"name": "N8N Bridge Settings",
+	"owner": "Administrator",
+	"permissions": [
+		{"read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "print": 1, "email": 1, "export": 1, "share": 1, "role": "System Manager"}
+	],
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 1
+}
