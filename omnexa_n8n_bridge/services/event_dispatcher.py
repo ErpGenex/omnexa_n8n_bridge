@@ -43,6 +43,16 @@ def _create_log(
 
 def dispatch_doc_event(doc, method: str | None = None):
 	"""Global hook that dispatches only configured subscriptions."""
+	# Never run integration dispatch during install/migrate/patch operations.
+	# During schema sync, the subscription DocType tables may not exist yet.
+	if (
+		getattr(frappe.flags, "in_install", False)
+		or getattr(frappe.flags, "in_migrate", False)
+		or getattr(frappe.flags, "in_patch", False)
+		or getattr(frappe.flags, "in_import", False)
+	):
+		return
+
 	try:
 		settings = frappe.get_single("N8N Bridge Settings")
 	except Exception:
@@ -52,12 +62,25 @@ def dispatch_doc_event(doc, method: str | None = None):
 		return
 
 	event_name = (method or "").strip() or "on_update"
-	subscriptions = frappe.get_all(
-		"N8N Event Subscription",
-		filters={"enabled": 1, "doctype_name": doc.doctype, "event_name": event_name},
-		fields=["name", "workflow", "workflow_path", "send_full_doc"],
-		limit_page_length=200,
-	)
+	# If the subscription DocType/table isn't installed yet, silently skip.
+	try:
+		if not frappe.db.exists("DocType", "N8N Event Subscription"):
+			return
+		if not frappe.db.table_exists("tabN8N Event Subscription"):
+			return
+	except Exception:
+		return
+
+	try:
+		subscriptions = frappe.get_all(
+			"N8N Event Subscription",
+			filters={"enabled": 1, "doctype_name": doc.doctype, "event_name": event_name},
+			fields=["name", "workflow", "workflow_path", "send_full_doc"],
+			limit_page_length=200,
+		)
+	except Exception:
+		# Avoid breaking normal saves if schema isn't ready / table missing.
+		return
 	if not subscriptions:
 		return
 
