@@ -5,6 +5,7 @@
 	"doctype": "DocType",
 	"engine": "InnoDB",
 	"field_order": [
+		"tab_break_overview",
 		"status",
 		"workflow",
 		"event_name",
@@ -15,25 +16,81 @@
 		"error_message"
 	],
 	"fields": [
-		{"fieldname": "status", "fieldtype": "Select", "label": "Status", "options": "Success\nFailed", "reqd": 1, "in_list_view": 1},
-		{"fieldname": "workflow", "fieldtype": "Link", "label": "N8N Workflow", "options": "N8N Workflow", "in_list_view": 1},
-		{"fieldname": "event_name", "fieldtype": "Data", "label": "Event", "in_list_view": 1},
-		{"fieldname": "reference_doctype", "fieldtype": "Data", "label": "Reference DocType", "in_list_view": 1},
-		{"fieldname": "reference_name", "fieldtype": "Data", "label": "Reference Name", "in_list_view": 1},
-		{"fieldname": "request_payload", "fieldtype": "Code", "label": "Request Payload"},
-		{"fieldname": "response_payload", "fieldtype": "Code", "label": "Response Payload"},
-		{"fieldname": "error_message", "fieldtype": "Long Text", "label": "Error Message"}
+		{
+			"fieldname": "tab_break_overview",
+			"fieldtype": "Tab Break",
+			"label": "Overview"
+		},
+		{
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"label": "Status",
+			"options": "Success\nFailed",
+			"reqd": 1,
+			"in_list_view": 1
+		},
+		{
+			"fieldname": "workflow",
+			"fieldtype": "Link",
+			"label": "N8N Workflow",
+			"options": "N8N Workflow",
+			"in_list_view": 1
+		},
+		{
+			"fieldname": "event_name",
+			"fieldtype": "Data",
+			"label": "Event",
+			"in_list_view": 1
+		},
+		{
+			"fieldname": "reference_doctype",
+			"fieldtype": "Data",
+			"label": "Reference DocType",
+			"in_list_view": 1
+		},
+		{
+			"fieldname": "reference_name",
+			"fieldtype": "Data",
+			"label": "Reference Name",
+			"in_list_view": 1
+		},
+		{
+			"fieldname": "request_payload",
+			"fieldtype": "Code",
+			"label": "Request Payload"
+		},
+		{
+			"fieldname": "response_payload",
+			"fieldtype": "Code",
+			"label": "Response Payload"
+		},
+		{
+			"fieldname": "error_message",
+			"fieldtype": "Long Text",
+			"label": "Error Message"
+		}
 	],
 	"grid_page_length": 50,
 	"index_web_pages_for_search": 1,
 	"links": [],
-	"modified": "2026-04-29 18:20:00.000000",
+	"modified": "2026-05-07 12:00:00",
 	"modified_by": "Administrator",
 	"module": "Omnexa N8N Bridge",
 	"name": "N8N Sync Log",
 	"owner": "Administrator",
 	"permissions": [
-		{"read": 1, "write": 0, "create": 0, "delete": 1, "report": 1, "print": 1, "email": 1, "export": 1, "share": 1, "role": "System Manager"}
+		{
+			"read": 1,
+			"write": 0,
+			"create": 0,
+			"delete": 1,
+			"report": 1,
+			"print": 1,
+			"email": 1,
+			"export": 1,
+			"share": 1,
+			"role": "System Manager"
+		}
 	],
 	"sort_field": "modified",
 	"sort_order": "DESC",
