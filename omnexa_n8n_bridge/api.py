@@ -74,3 +74,7 @@ def _create_manual_log(workflow: str, req: dict, resp: dict | None, status: str,
 	if error:
 		log.error_message = error
 	log.insert(ignore_permissions=True)
+@frappe.whitelist()
+def preview_infra_kpi(scenario: str | None = None, params: str | None = None) -> dict:
+	from omnexa_core.omnexa_core.parity_api import preview_infra_kpi as _p
+	return _p("n8n_bridge", scenario=scenario, params=params)
