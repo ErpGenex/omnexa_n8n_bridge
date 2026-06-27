@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import hmac
+
 import frappe
 from frappe import _
+from frappe.rate_limiter import rate_limit
 from frappe.utils.password import get_decrypted_password
 
 from omnexa_n8n_bridge.services.n8n_client import request
@@ -37,7 +40,8 @@ def trigger_workflow(workflow: str, reference_doctype: str | None = None, refere
 		return {"ok": False, "error": frappe.get_traceback()}
 
 
-@frappe.whitelist(allow_guest=True)
+@frappe.whitelist(allow_guest=True, methods=["POST"])
+@rate_limit(limit=120, seconds=60)
 def inbound_webhook():
 	"""Public endpoint for n8n callbacks, protected by shared secret header."""
 	secret = (frappe.request.headers.get("X-N8N-SECRET") or "").strip()
@@ -47,7 +51,7 @@ def inbound_webhook():
 	except Exception:
 		expected = ""
 
-	if not expected or secret != expected:
+	if not expected or not secret or not hmac.compare_digest(secret, expected):
 		frappe.throw(_("Unauthorized webhook call"), frappe.PermissionError)
 
 	payload = frappe.request.get_json(silent=True) or {}
