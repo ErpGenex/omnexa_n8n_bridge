@@ -14,7 +14,8 @@ def _settings():
 def _headers_from_settings() -> dict[str, str]:
 	s = _settings()
 	auth_type = (s.auth_type or "").strip()
-	headers: dict[str, str] = {"Content-Type": "application/json"}
+	headers: dict[str, str] = {"Content-Type": "application/json"
+	}
 
 	if auth_type == "API Key" and s.api_key:
 		headers[s.api_key_header or "X-API-KEY"] = get_decrypted_password(

@@ -143,7 +143,7 @@ doc_events = {
 		"on_update": "omnexa_n8n_bridge.services.event_dispatcher.dispatch_doc_event",
 		"on_submit": "omnexa_n8n_bridge.services.event_dispatcher.dispatch_doc_event",
 		"on_cancel": "omnexa_n8n_bridge.services.event_dispatcher.dispatch_doc_event",
-		"on_trash": "omnexa_n8n_bridge.services.event_dispatcher.dispatch_doc_event",
+		"on_trash": "omnexa_n8n_bridge.services.event_dispatcher.dispatch_doc_event"
 	}
 }
 
@@ -211,22 +211,22 @@ doc_events = {
 
 # user_data_fields = [
 # 	{
-# 		"doctype": "{doctype_1}",
-# 		"filter_by": "{filter_by}",
-# 		"redact_fields": ["{field_1}", "{field_2}"],
+# 		"doctype": "{}",
+# 		"filter_by": "{}",
+# 		"redact_fields": ["{}", "{}"],
 # 		"partial": 1,
 # 	},
 # 	{
-# 		"doctype": "{doctype_2}",
-# 		"filter_by": "{filter_by}",
+# 		"doctype": "{}",
+# 		"filter_by": "{}",
 # 		"partial": 1,
 # 	},
 # 	{
-# 		"doctype": "{doctype_3}",
+# 		"doctype": "{}",
 # 		"strict": False,
 # 	},
 # 	{
-# 		"doctype": "{doctype_4}"
+# 		"doctype": "{}"
 # 	}
 # ]
 

@@ -12,7 +12,7 @@ def _safe_payload(doc, event_name: str) -> dict[str, Any]:
 		"doctype": doc.doctype,
 		"name": doc.name,
 		"event": event_name,
-		"data": doc.as_dict(no_default_fields=False),
+		"data": doc.as_dict(no_default_fields=False)
 	}
 
 
@@ -74,7 +74,8 @@ def dispatch_doc_event(doc, method: str | None = None):
 	try:
 		subscriptions = frappe.get_all(
 			"N8N Event Subscription",
-			filters={"enabled": 1, "doctype_name": doc.doctype, "event_name": event_name},
+			filters={"enabled": 1, "doctype_name": doc.doctype, "event_name": event_name
+	},
 			fields=["name", "workflow", "workflow_path", "send_full_doc"],
 			limit_page_length=200,
 		)
@@ -91,8 +92,8 @@ def dispatch_doc_event(doc, method: str | None = None):
 				payload = {
 					"doctype": doc.doctype,
 					"name": doc.name,
-					"event": event_name,
-				}
+					"event": event_name
+	}
 
 			response = request(sub.workflow_path or "/webhook/erp-event", method="POST", payload=payload)
 			_create_log(

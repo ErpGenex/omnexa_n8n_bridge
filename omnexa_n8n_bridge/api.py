@@ -16,9 +16,11 @@ def test_connection():
 	frappe.only_for(("System Manager",))
 	try:
 		resp = request("/healthz", method="GET")
-		return {"ok": True, "response": resp}
+		return {"ok": True, "response": resp
+	}
 	except Exception:
-		return {"ok": False, "error": frappe.get_traceback()}
+		return {"ok": False, "error": frappe.get_traceback()
+	}
 
 
 @frappe.whitelist()
@@ -29,15 +31,17 @@ def trigger_workflow(workflow: str, reference_doctype: str | None = None, refere
 	payload = {
 		"workflow": wf.name,
 		"reference_doctype": reference_doctype,
-		"reference_name": reference_name,
+		"reference_name": reference_name
 	}
 	try:
 		resp = request(wf.workflow_path or "/webhook/manual-trigger", method="POST", payload=payload)
 		_create_manual_log(wf.name, payload, resp, status="Success")
-		return {"ok": True, "response": resp}
+		return {"ok": True, "response": resp
+	}
 	except Exception:
 		_create_manual_log(wf.name, payload, None, status="Failed", error=frappe.get_traceback())
-		return {"ok": False, "error": frappe.get_traceback()}
+		return {"ok": False, "error": frappe.get_traceback()
+	}
 
 
 @frappe.whitelist(allow_guest=True, methods=["POST"])
@@ -62,7 +66,8 @@ def inbound_webhook():
 	log.reference_name = payload.get("reference_name") or "N/A"
 	log.response_payload = frappe.as_json(payload)
 	log.insert(ignore_permissions=True)
-	return {"ok": True}
+	return {"ok": True
+	}
 
 
 def _create_manual_log(workflow: str, req: dict, resp: dict | None, status: str, error: str | None = None):
