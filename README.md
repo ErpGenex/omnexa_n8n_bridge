@@ -1,33 +1,7 @@
-### Omnexa n8n Bridge
+# omnexa_n8n_bridge
 
-Unified integration app for n8n cloud and local
+Frappe/ERPGenex application.
 
-### Installation
+**Documentation:** [`Docs/archive/apps/omnexa_n8n_bridge/`](../../Docs/archive/apps/omnexa_n8n_bridge/)
 
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
-
-```bash
-cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
-bench install-app omnexa_n8n_bridge
-```
-
-### Contributing
-
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
-
-```bash
-cd apps/omnexa_n8n_bridge
-pre-commit install
-```
-
-Pre-commit is configured to use the following tools for checking and formatting your code:
-
-- ruff
-- eslint
-- prettier
-- pyupgrade
-
-### License
-
-mit
+Server docs vault: [`Docs/README.md`](../../Docs/README.md)

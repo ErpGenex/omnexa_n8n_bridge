@@ -3,7 +3,30 @@
  "columns": [],
  "disabled": 0,
  "doctype": "Report",
- "filters": [],
+ "filters": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1,
+   "width": "180px"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "From Date",
+   "reqd": 1,
+   "width": "120px"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "To Date",
+   "reqd": 1,
+   "width": "120px"
+  }
+ ],
  "is_standard": "Yes",
  "module": "Omnexa N8N Bridge",
  "name": "Omnexa N8N Bridge Activity Register",
